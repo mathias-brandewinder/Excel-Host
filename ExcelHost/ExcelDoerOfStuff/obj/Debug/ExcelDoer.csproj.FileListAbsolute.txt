@@ -1,5 +1,0 @@
-C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\ExcelDoerOfStuff\bin\Debug\ExcelDoerOfStuff.dll
-C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\ExcelDoerOfStuff\bin\Debug\ExcelDoerOfStuff.pdb
-C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\ExcelDoerOfStuff\obj\Debug\ExcelDoer.csprojResolveAssemblyReference.cache
-C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\ExcelDoerOfStuff\obj\Debug\ExcelDoerOfStuff.dll
-C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\ExcelDoerOfStuff\obj\Debug\ExcelDoerOfStuff.pdb
