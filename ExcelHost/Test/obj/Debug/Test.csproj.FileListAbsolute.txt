@@ -1,0 +1,9 @@
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\bin\Debug\Test.dll
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\bin\Debug\Test.pdb
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\bin\Debug\ExcelDoerOfStuff.dll
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\bin\Debug\nunit.framework.dll
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\bin\Debug\ExcelDoerOfStuff.pdb
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\bin\Debug\nunit.framework.xml
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\obj\Debug\Test.dll
+C:\Users\prestong\Documents\GitHub\Excel-Host\ExcelHost\Test\obj\Debug\Test.pdb
