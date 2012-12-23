@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using System.Diagnostics;
 
 namespace ExcelHost
 {
@@ -26,6 +27,21 @@ namespace ExcelHost
             this.TargetSheet = workbook.ActiveSheet; ;
 
             this.DoSomethingWithMessage("Hello, World");
+
+            var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
+
+            var info = new ProcessStartInfo();
+            var fsiProcess = new Process();
+            var appDomain = AppDomain.CurrentDomain;
+            info.Domain = appDomain.FriendlyName;
+            //info.RedirectStandardInput = true
+            //info.RedirectStandardOutput = true
+            //info.UseShellExecute = false
+            //info.CreateNoWindow = true
+            info.FileName = fsiPath;
+
+            fsiProcess.StartInfo = info;
+            fsiProcess.Start();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -43,7 +59,7 @@ namespace ExcelHost
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
+
         #endregion
     }
 }
