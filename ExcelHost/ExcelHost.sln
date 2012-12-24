@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHost", "ExcelHost\ExcelHost.csproj", "{4EC9BAB9-4553-471E-A35B-1F28FFC0358D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelServiceContracts", "ExcelServiceContracts\ExcelServiceContracts.csproj", "{67DC1C38-D117-4BB1-955B-E806AA8021B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelService", "ExcelService\ExcelService.csproj", "{8ED8CB3B-C0E7-4E7E-A33C-282020540D8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{4EC9BAB9-4553-471E-A35B-1F28FFC0358D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC9BAB9-4553-471E-A35B-1F28FFC0358D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC9BAB9-4553-471E-A35B-1F28FFC0358D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DC1C38-D117-4BB1-955B-E806AA8021B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DC1C38-D117-4BB1-955B-E806AA8021B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DC1C38-D117-4BB1-955B-E806AA8021B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DC1C38-D117-4BB1-955B-E806AA8021B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED8CB3B-C0E7-4E7E-A33C-282020540D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED8CB3B-C0E7-4E7E-A33C-282020540D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED8CB3B-C0E7-4E7E-A33C-282020540D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED8CB3B-C0E7-4E7E-A33C-282020540D8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

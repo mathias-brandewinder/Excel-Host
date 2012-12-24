@@ -40,6 +40,9 @@ namespace ExcelHost
             //info.CreateNoWindow = true
             info.FileName = fsiPath;
 
+            var myService = new ExcelServiceHost();
+            myService.Run();
+
             fsiProcess.StartInfo = info;
             fsiProcess.Start();
         }
