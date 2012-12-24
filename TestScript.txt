@@ -1,0 +1,9 @@
+#r "System.ServiceModel";;
+#r "System.ServiceModel.Channels";;
+open System.ServiceModel;;
+open System.ServiceModel.Channels;;
+#r "C:\ExcelHost\ExcelServiceContracts.dll";;
+open ExcelService;;
+let pipeFactory = new ChannelFactory<IExcelService>(new NetNamedPipeBinding(), new EndpointAddress("net.pipe://localhost/excel"));;
+let proxy = pipeFactory.CreateChannel();;
+proxy.DoStuff("Hi");;

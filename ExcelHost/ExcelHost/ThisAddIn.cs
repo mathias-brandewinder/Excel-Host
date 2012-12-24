@@ -22,20 +22,7 @@ namespace ExcelHost
             var workbooks = excel.Workbooks;
             var workbook = workbooks.Add();
 
-            //var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
 
-            //var info = new ProcessStartInfo();
-            //var fsiProcess = new Process();
-            //var appDomain = AppDomain.CurrentDomain;
-            //info.Domain = appDomain.FriendlyName;
-            ////info.RedirectStandardInput = true
-            ////info.RedirectStandardOutput = true
-            ////info.UseShellExecute = false
-            ////info.CreateNoWindow = true
-            //info.FileName = fsiPath;
-
-            //fsiProcess.StartInfo = info;
-            //fsiProcess.Start();
 
             ExcelService.ExcelService.Workbook = workbook;
 
@@ -47,8 +34,21 @@ namespace ExcelHost
             
             this.Host = host;
 
-            var form = new TheForm();
-            form.Show();
+            var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
+
+            var info = new ProcessStartInfo();
+            var fsiProcess = new Process();
+            //info.RedirectStandardInput = true
+            //info.RedirectStandardOutput = true
+            //info.UseShellExecute = false
+            //info.CreateNoWindow = true
+            info.FileName = fsiPath;
+
+            fsiProcess.StartInfo = info;
+            fsiProcess.Start();
+
+            //var form = new TheForm();
+            //form.Show();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

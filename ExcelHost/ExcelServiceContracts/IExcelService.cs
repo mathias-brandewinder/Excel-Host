@@ -12,5 +12,8 @@ namespace ExcelService
     {
         [OperationContract]
         void DoStuff(string message);
+
+        [OperationContract]
+        string GrabIt();
     }
 }

@@ -19,5 +19,14 @@ namespace ExcelService
             var worksheet = Workbook.ActiveSheet;
             worksheet.Cells[1, 1] = message;
         }
+
+        public string GrabIt()
+        {
+            var worksheet = Workbook.ActiveSheet;
+            var content = worksheet.Cells[1, 1].Value2;
+            return content ?? "N/A";
+
+            //return "Hogmonaut";
+        }
     }
 }
