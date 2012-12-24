@@ -10,41 +10,45 @@ using System.Diagnostics;
 
 namespace ExcelHost
 {
+    using System.ServiceModel;
+
     public partial class ThisAddIn
     {
-        public Microsoft.Office.Interop.Excel.Worksheet TargetSheet { get; set; }
-
-        public void DoSomethingWithMessage(string message)
-        {
-            this.TargetSheet.Cells[1, 1].Value2 = message;
-        }
+        public ServiceHost Host { get; set; }
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             var excel = Globals.ThisAddIn.Application;
             var workbooks = excel.Workbooks;
             var workbook = workbooks.Add();
-            this.TargetSheet = workbook.ActiveSheet; ;
 
-            this.DoSomethingWithMessage("Hello, World");
+            //var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
 
-            var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
+            //var info = new ProcessStartInfo();
+            //var fsiProcess = new Process();
+            //var appDomain = AppDomain.CurrentDomain;
+            //info.Domain = appDomain.FriendlyName;
+            ////info.RedirectStandardInput = true
+            ////info.RedirectStandardOutput = true
+            ////info.UseShellExecute = false
+            ////info.CreateNoWindow = true
+            //info.FileName = fsiPath;
 
-            var info = new ProcessStartInfo();
-            var fsiProcess = new Process();
-            var appDomain = AppDomain.CurrentDomain;
-            info.Domain = appDomain.FriendlyName;
-            //info.RedirectStandardInput = true
-            //info.RedirectStandardOutput = true
-            //info.UseShellExecute = false
-            //info.CreateNoWindow = true
-            info.FileName = fsiPath;
+            //fsiProcess.StartInfo = info;
+            //fsiProcess.Start();
 
-            var myService = new ExcelServiceHost();
-            myService.Run();
+            ExcelService.ExcelService.Workbook = workbook;
 
-            fsiProcess.StartInfo = info;
-            fsiProcess.Start();
+            var host = new ServiceHost(typeof(ExcelService.ExcelService),
+                                       new[] { new Uri("net.pipe://localhost") });
+
+            host.AddServiceEndpoint(typeof(ExcelService.IExcelService), new NetNamedPipeBinding(), "excel");
+            host.Open();
+            
+            this.Host = host;
+
+            var form = new TheForm();
+            form.Show();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
