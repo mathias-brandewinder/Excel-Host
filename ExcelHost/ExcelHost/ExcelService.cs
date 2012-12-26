@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel.Description;
 
 namespace ExcelService
 {
@@ -13,6 +10,7 @@ namespace ExcelService
     internal class ExcelService : IExcelService
     {
         internal static Workbook Workbook { get; set; }
+        private static ServiceHost HostedInstance { get; set; }
 
         public void DoStuff(string message)
         {
@@ -49,6 +47,34 @@ namespace ExcelService
                                  };
 
             return fakeResult;
+        }
+
+        public static ServiceHost Run()
+        {
+            if (HostedInstance == null)
+            {
+                var endPointUri = new Uri("net.pipe://localhost");
+                var host = new ServiceHost(typeof(ExcelService), new[] {endPointUri});
+
+                host.AddServiceEndpoint(typeof(IExcelService), new NetNamedPipeBinding(), "excel");
+
+                var smb = new ServiceMetadataBehavior();
+                host.Description.Behaviors.Add(smb);
+                host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName, MetadataExchangeBindings.CreateMexNamedPipeBinding(), "excel/mex");
+
+                host.Open();
+                HostedInstance = host;
+            }
+
+            return HostedInstance;
+        }
+
+        public static void Stop()
+        {
+            if (HostedInstance != null)
+            {
+                HostedInstance.Close();
+            }
         }
     }
 }

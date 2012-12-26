@@ -1,38 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Excel = Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Excel;
-using System.Diagnostics;
+﻿using Office = Microsoft.Office.Core;
 
 namespace ExcelHost
 {
-    using System.ServiceModel;
-
     public partial class ThisAddIn
     {
-        public ServiceHost Host { get; set; }
-
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             var excel = Globals.ThisAddIn.Application;
             var workbooks = excel.Workbooks;
             var workbook = workbooks.Add();
 
-
-
             ExcelService.ExcelService.Workbook = workbook;
-
-            var host = new ServiceHost(typeof(ExcelService.ExcelService),
-                                       new[] { new Uri("net.pipe://localhost") });
-
-            host.AddServiceEndpoint(typeof(ExcelService.IExcelService), new NetNamedPipeBinding(), "excel");
-            host.Open();
-            
-            this.Host = host;
+            ExcelService.ExcelService.Run();
 
             //var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
 
@@ -53,6 +32,7 @@ namespace ExcelHost
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            ExcelService.ExcelService.Stop();
         }
 
         #region VSTO generated code

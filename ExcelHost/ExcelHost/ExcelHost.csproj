@@ -154,7 +154,6 @@
   -->
   <ItemGroup>
     <Compile Include="ExcelService.cs" />
-    <Compile Include="ExcelServiceHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
