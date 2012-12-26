@@ -11,6 +11,7 @@ namespace ExcelService
     {
         internal static Workbook Workbook { get; set; }
         private static ServiceHost HostedInstance { get; set; }
+        private static readonly object Locker = new object();
 
         public void DoStuff(string message)
         {
@@ -49,31 +50,37 @@ namespace ExcelService
             return fakeResult;
         }
 
-        public static ServiceHost Run()
+        public static void Start()
         {
-            if (HostedInstance == null)
+            lock (Locker)
             {
-                var endPointUri = new Uri("net.pipe://localhost");
-                var host = new ServiceHost(typeof(ExcelService), new[] {endPointUri});
+                if (HostedInstance == null)
+                {
+                    var endPointUri = new Uri("net.pipe://localhost");
+                    var host = new ServiceHost(typeof(ExcelService), new[] { endPointUri });
 
-                host.AddServiceEndpoint(typeof(IExcelService), new NetNamedPipeBinding(), "excel");
+                    host.AddServiceEndpoint(typeof(IExcelService), new NetNamedPipeBinding(), "excel");
 
-                var smb = new ServiceMetadataBehavior();
-                host.Description.Behaviors.Add(smb);
-                host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName, MetadataExchangeBindings.CreateMexNamedPipeBinding(), "excel/mex");
+                    var smb = new ServiceMetadataBehavior();
+                    host.Description.Behaviors.Add(smb);
+                    host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName, MetadataExchangeBindings.CreateMexNamedPipeBinding(), "excel/mex");
 
-                host.Open();
-                HostedInstance = host;
+                    host.Open();
+                    HostedInstance = host;
+                }
             }
-
-            return HostedInstance;
         }
 
         public static void Stop()
         {
-            if (HostedInstance != null)
+            lock(Locker)
             {
-                HostedInstance.Close();
+                if (HostedInstance != null)
+                {
+                    HostedInstance.Abort();
+                    //HostedInstance.Close();
+                    HostedInstance = null;
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ namespace ExcelHost
             var workbook = workbooks.Add();
 
             ExcelService.ExcelService.Workbook = workbook;
-            ExcelService.ExcelService.Run();
+            ExcelService.ExcelService.Start();
 
             //var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
 
