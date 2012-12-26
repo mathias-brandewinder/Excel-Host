@@ -34,21 +34,21 @@ namespace ExcelHost
             
             this.Host = host;
 
-            var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
+            //var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
 
-            var info = new ProcessStartInfo();
-            var fsiProcess = new Process();
+            //var info = new ProcessStartInfo();
+            //var fsiProcess = new Process();
             //info.RedirectStandardInput = true
             //info.RedirectStandardOutput = true
             //info.UseShellExecute = false
             //info.CreateNoWindow = true
-            info.FileName = fsiPath;
+            //info.FileName = fsiPath;
 
-            fsiProcess.StartInfo = info;
-            fsiProcess.Start();
+            //fsiProcess.StartInfo = info;
+            //fsiProcess.Start();
 
-            //var form = new TheForm();
-            //form.Show();
+            var form = new TheForm();
+            form.Show();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

@@ -10,7 +10,7 @@ namespace ExcelService
 {
     using Microsoft.Office.Interop.Excel;
 
-    public class ExcelService : IExcelService
+    internal class ExcelService : IExcelService
     {
         internal static Workbook Workbook { get; set; }
 
@@ -25,8 +25,30 @@ namespace ExcelService
             var worksheet = Workbook.ActiveSheet;
             var content = worksheet.Cells[1, 1].Value2;
             return content ?? "N/A";
+        }
 
-            //return "Hogmonaut";
+        public void DoMultipleStuff(object[][] stuff)
+        {
+            for (var row = 0; row < stuff.GetLength(0); ++row)
+            {
+                for (var col = 0; col < stuff[row].GetLength(0); ++col)
+                {
+                    Debug.WriteLine(stuff[row][col]);
+                }
+            }
+        }
+
+        public object[][] GrabMultipleIt()
+        {
+            var fakeResult = new object[][]
+                                 {
+                                     new object[] { "hi", "my", "name", "is", "hogmonaut" },
+                                     new object[] { 1, 2, 3, 4, 5 },
+                                     new object[] { "the", "answer", "is", 42, "!" },
+                                     new object[] { "lolwhut", null, null, null, null }
+                                 };
+
+            return fakeResult;
         }
     }
 }

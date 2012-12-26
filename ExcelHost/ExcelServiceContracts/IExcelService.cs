@@ -15,5 +15,11 @@ namespace ExcelService
 
         [OperationContract]
         string GrabIt();
+
+        [OperationContract]
+        void DoMultipleStuff(object[][] stuff);
+
+        [OperationContract]
+        object[][] GrabMultipleIt();
     }
 }
