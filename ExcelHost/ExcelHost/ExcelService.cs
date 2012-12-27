@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.ServiceModel;
-using System.ServiceModel.Description;
+using ExcelService;
 
-namespace ExcelService
+namespace ExcelHost
 {
     using Microsoft.Office.Interop.Excel;
 
@@ -39,7 +38,7 @@ namespace ExcelService
 
         public object[][] GrabMultipleIt()
         {
-            var fakeResult = new object[][]
+            var fakeResult = new []
                                  {
                                      new object[] { "hi", "my", "name", "is", "hogmonaut" },
                                      new object[] { 1, 2, 3, 4, 5 },
@@ -56,29 +55,19 @@ namespace ExcelService
             {
                 if (HostedInstance == null)
                 {
-                    var endPointUri = new Uri("net.pipe://localhost");
-                    var host = new ServiceHost(typeof(ExcelService), new[] { endPointUri });
-
-                    host.AddServiceEndpoint(typeof(IExcelService), new NetNamedPipeBinding(), "excel");
-
-                    var smb = new ServiceMetadataBehavior();
-                    host.Description.Behaviors.Add(smb);
-                    host.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName, MetadataExchangeBindings.CreateMexNamedPipeBinding(), "excel/mex");
-
-                    host.Open();
-                    HostedInstance = host;
+                    HostedInstance = new ServiceHost(typeof(ExcelService));
+                    HostedInstance.Open();
                 }
             }
         }
 
         public static void Stop()
         {
-            lock(Locker)
+            lock (Locker)
             {
                 if (HostedInstance != null)
                 {
                     HostedInstance.Abort();
-                    //HostedInstance.Close();
                     HostedInstance = null;
                 }
             }

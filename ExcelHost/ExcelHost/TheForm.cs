@@ -1,25 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
+using ExcelService;
 
 namespace ExcelHost
 {
-    using ExcelService;
-
     public partial class TheForm : Form
     {
         private static IExcelService Service
         {
             get
             {
-                var pipeFactory = new ChannelFactory<IExcelService>(new NetNamedPipeBinding(), new EndpointAddress("net.pipe://localhost/excel")); ;
+                var pipeFactory = new ChannelFactory<IExcelService>("ExcelClient");
                 var proxy = pipeFactory.CreateChannel();
                 return proxy;
             }

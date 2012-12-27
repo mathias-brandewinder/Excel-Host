@@ -10,8 +10,8 @@ namespace ExcelHost
             var workbooks = excel.Workbooks;
             var workbook = workbooks.Add();
 
-            ExcelService.ExcelService.Workbook = workbook;
-            ExcelService.ExcelService.Start();
+            ExcelService.Workbook = workbook;
+            ExcelService.Start();
 
             //var fsiPath = @"C:\Program Files (x86)\Microsoft F#\v4.0\fsi.exe";
 
@@ -32,7 +32,7 @@ namespace ExcelHost
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
-            ExcelService.ExcelService.Stop();
+            ExcelService.Stop();
         }
 
         #region VSTO generated code
